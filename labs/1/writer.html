@@ -13,17 +13,20 @@
     <div class="d-flex gap-auto justify-content-center gap-2">
         <a class="btn btn-primary" href="index.html">Main Page</a>
         <a class="btn btn-secondary" href="reader.html">Reader</a>
-
     </div>
+
+    <p class="text-center">Last Saved: <span id="time" class="text-secondary"></span></p>
+
+    
     <a href="./reader.html"></a>
     <div id="view">
-        <div class="d-flex items-center py-2 m-auto gap-2 rounded-md">
-            <textarea id="new_text" class="rounded-md form-control m-1" placeholder="Type a new note here" name="" id="" cols="10" rows="3"></textarea>
-            <button class="my-auto btn btn-secondary m-1" onclick="addNoteToLocalStorage()">Add</button>
-
-        </div>
         <!-- Gets populated here -->
-        
+    </div>
+    <hr>
+    <!-- Div to add new stuff that get's pushed down -->
+    <div class="d-flex items-center py-2 m-auto gap-2 rounded-md">
+        <textarea id="new_text" class="rounded-md form-control m-1" placeholder="Type a new note here" name="" id="" cols="10" rows="3"></textarea>
+        <button class="my-auto btn btn-secondary m-1" onclick="addNoteToLocalStorage()">Add</button>
     </div>
     
 </body>

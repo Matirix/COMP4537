@@ -1,9 +1,10 @@
+// Function to add a new note to the localStorage
 function addNoteToLocalStorage() {
     // Current Time
     let currentTime = new Date().toLocaleString();
     // New Data
     existingNotes = JSON.parse(localStorage.getItem("notes")) || [];
-    newNote = {
+    const newNote = {
         id: existingNotes.length + 1,
         time: currentTime,
         text: document.getElementById("new_text").value,
@@ -15,22 +16,17 @@ function addNoteToLocalStorage() {
     localStorage.setItem("notes", JSON.stringify(existingNotes));
 
     console.log(localStorage.getItem("notes"));
-    location.reload();
+    populateSection();
 }
-
-
-function saveEditedNote(index, newNote ) {
-    
-
-}
-
 
 // Function to create and append div elements with textareas, save buttons, and delete buttons
 function populateSection() {
-    section = document.getElementById("view");
-    data = JSON.parse(localStorage.getItem("notes"))
+    let section = document.getElementById("view");
+    section.innerHTML = '';
 
-    data.forEach((item, index) => {
+    notes = JSON.parse(localStorage.getItem("notes"))
+    
+    notes.forEach((item, index) => {
 
         div = document.createElement("div");
         div.classList.add("d-flex", "items-center", "py-2","m-auto", "gap-2", "rounded-md")
@@ -43,11 +39,13 @@ function populateSection() {
         // Save button
         saveButton = document.createElement("button");
         saveButton.innerText = "Save";
+        saveButton.id = `save_${index}`;
         saveButton.classList.add("my-auto", "btn", "btn-primary");
         
         // Delete button
         deleteButton = document.createElement("button");
         deleteButton.innerText = "Delete";
+        deleteButton.id = `delete_${index}`;
         deleteButton.classList.add("my-auto", "btn", "btn-danger");
 
 
@@ -55,25 +53,28 @@ function populateSection() {
         saveButton.addEventListener("click", () => {
             new_text = document.getElementById(`note_${index}`).value;
 
-            data[index].text = new_text;
+            notes[index].text = new_text;
             // Update the localStorage value
-            localStorage.setItem("notes", JSON.stringify(data));
+            localStorage.setItem("notes", JSON.stringify(notes));
             console.log(localStorage.getItem("notes"));
-            location.reload();
         });
-
-
-
 
         // For the Delete Button
         deleteButton.addEventListener("click", () => {
             // Remove the specific div from the DOM
-            // Remove the corresponding item from the data array
-            data.splice(index, 1);
+            let selected_div = document.getElementById(`note_${index}`);
+            let selected_del = document.getElementById(`delete_${index}`);
+            let selected_save = document.getElementById(`save_${index}`);
+
+            notes.splice(index, 1);
             // Update the localStorage value
-            localStorage.setItem("notes", JSON.stringify(data));
+            localStorage.setItem("notes", JSON.stringify(notes));
+            selected_div.remove()
+            selected_del.remove()
+            selected_save.remove()
             console.log(localStorage.getItem("notes"));
-            location.reload();
+
+
         });
 
         // Append the textarea, save button, and delete button to the div
@@ -86,8 +87,23 @@ function populateSection() {
     });
 }
 
+function saveNotes() {
+    notes = JSON.parse(localStorage.getItem("notes"))
+    time = new Date().toLocaleTimeString();
+    updated_span = document.getElementById("time");
+    // Save
+    notes.forEach((item, index) => {
+        new_text = document.getElementById(`note_${index}`).value;
+        notes[index].text = new_text;
 
-// Call the function to populate the section with data
-// setTimeout(() => {
-    populateSection();
-// }, 1000);
+        // Update the localStorage value
+        localStorage.setItem("notes", JSON.stringify(notes));
+        console.log(localStorage.getItem("notes"));
+    });
+    // Update the time
+    updated_span.innerText = time;
+}
+
+
+populateSection()
+setInterval(saveNotes, 2000);

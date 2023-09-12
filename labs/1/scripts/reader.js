@@ -20,4 +20,11 @@ function populateReaderView() {
     });
 }
 
+function getLastSaved() {
+    notes = JSON.parse(localStorage.getItem("notes"))
+    timeSpan = document.getElementById("time");
+    time.textContent = notes[notes.length - 1].time;
+}
+
 populateReaderView();
+getLastSaved();
