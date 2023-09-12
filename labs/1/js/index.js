@@ -1,14 +1,21 @@
+class Note {
+    constructor(id, text) {
+        this.id = id; // You can use a timestamp as an ID
+        this.time = new Date().toLocaleString();
+        this.text = text;
+    }
+}
+
 // Function to add a new note to the localStorage
 function addNoteToLocalStorage() {
-    // Current Time
-    let currentTime = new Date().toLocaleString();
     // New Data
     existingNotes = JSON.parse(localStorage.getItem("notes")) || [];
-    const newNote = {
-        id: existingNotes.length + 1,
-        time: currentTime,
-        text: document.getElementById("new_text").value,
-    }
+
+
+    const newNote = new Note(
+        existingNotes.length + 1,
+        document.getElementById("new_text").value,
+    )
     // Existing Notes
     existingNotes.push(newNote);
  
