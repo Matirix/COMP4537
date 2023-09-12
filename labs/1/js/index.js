@@ -11,7 +11,7 @@ function addNoteToLocalStorage() {
     }
     // Existing Notes
     existingNotes.push(newNote);
-
+ 
     // Set item
     localStorage.setItem("notes", JSON.stringify(existingNotes));
 
@@ -23,11 +23,11 @@ function addNoteToLocalStorage() {
 function populateSection() {
     let section = document.getElementById("view");
     section.innerHTML = '';
-
+    // Get the Notes
     notes = JSON.parse(localStorage.getItem("notes"))
     
+    // Creates a div for each note and then append it to the section.
     notes.forEach((item, index) => {
-
         div = document.createElement("div");
         div.classList.add("d-flex", "items-center", "py-2","m-auto", "gap-2", "rounded-md")
 
@@ -105,5 +105,13 @@ function saveNotes() {
 }
 
 
+// Get's the last saved object
+function getLastSaved() {
+    notes = JSON.parse(localStorage.getItem("notes"))
+    timeSpan = document.getElementById("time");
+    time.textContent = notes[notes.length - 1].time;
+}
+
 populateSection()
+getLastSaved();
 setInterval(saveNotes, 2000);
