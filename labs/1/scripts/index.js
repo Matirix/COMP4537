@@ -1,5 +1,3 @@
-
-
 function addNoteToLocalStorage() {
     // Current Time
     let currentTime = new Date().toLocaleString();
@@ -17,6 +15,7 @@ function addNoteToLocalStorage() {
     localStorage.setItem("notes", JSON.stringify(existingNotes));
 
     console.log(localStorage.getItem("notes"));
+    location.reload();
 }
 
 
@@ -78,13 +77,7 @@ function populateSection() {
     });
 }
 
-function AddNewItem() {
-    let text = document.getElementById("new_text").value;
 
-    console.log(data)
-    location.reload();
-
-}
 // Call the function to populate the section with data
 // setTimeout(() => {
     populateSection();

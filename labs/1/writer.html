@@ -8,15 +8,18 @@
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Writer</h1>
-    <!-- <button class="btn btn-primary" onclick="myfunction()">Click me to populate</button> -->
+    <h1 class="text-center">Writer</h1>
+    <!-- Buttons to go back and forth -->
+    <div class="d-flex gap-auto justify-content-center gap-2">
+        <a class="btn btn-primary" href="index.html">Main Page</a>
+        <a class="btn btn-secondary" href="reader.html">Reader</a>
+
+    </div>
     <a href="./reader.html"></a>
     <div id="view">
-        <!-- Default Box -->
         <div class="d-flex items-center py-2 m-auto gap-2 rounded-md">
             <textarea id="new_text" class="rounded-md form-control m-1" placeholder="Type a new note here" name="" id="" cols="10" rows="3"></textarea>
             <button class="my-auto btn btn-secondary m-1" onclick="addNoteToLocalStorage()">Add</button>
-            <!-- <button class="my-auto btn btn-danger m-1">Delete</button> -->
 
         </div>
         <!-- Gets populated here -->
