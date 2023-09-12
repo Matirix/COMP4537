@@ -19,6 +19,11 @@ function addNoteToLocalStorage() {
 }
 
 
+function saveEditedNote(index, newNote ) {
+    
+
+}
+
 
 // Function to create and append div elements with textareas, save buttons, and delete buttons
 function populateSection() {
@@ -31,6 +36,7 @@ function populateSection() {
         div.classList.add("d-flex", "items-center", "py-2","m-auto", "gap-2", "rounded-md")
 
         textarea = document.createElement("textarea");
+        textarea.id = `note_${index}`;
         textarea.value = item.text;
         textarea.classList.add("rounded-md","form-control", "m-1");
 
@@ -47,13 +53,16 @@ function populateSection() {
 
         // For the Save Button
         saveButton.addEventListener("click", () => {
-            // Update the text property of the corresponding item in the data array
-            data[index].text = textarea.value;
+            new_text = document.getElementById(`note_${index}`).value;
+
+            data[index].text = new_text;
             // Update the localStorage value
             localStorage.setItem("notes", JSON.stringify(data));
             console.log(localStorage.getItem("notes"));
             location.reload();
         });
+
+
 
 
         // For the Delete Button
