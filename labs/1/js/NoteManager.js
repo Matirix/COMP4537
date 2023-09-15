@@ -1,4 +1,3 @@
-// import NoteManager from "./NoteManager.js";
 class Note {
     constructor(id, text) {
         this.id = id; // You can use a timestamp as an ID
@@ -7,7 +6,7 @@ class Note {
     }
 }
 
-class NoteManager {
+export default class NoteManager {
 
     constructor(notes) {
         this.notes = notes;
@@ -21,6 +20,7 @@ class NoteManager {
 
     addNoteToLocalStorage() {
         // New Data    
+        let notes = JSON.parse(localStorage.getItem("notes"))
         const newNote = new Note(
             notes.length + 1,
             document.getElementById("new_text").value,
@@ -37,12 +37,13 @@ class NoteManager {
 
     generateSaveButton(index) {
         let saveButton = document.createElement("button");
+        let notes = JSON.parse(localStorage.getItem("notes"))
         saveButton.innerText = "Save";
         saveButton.id = `save_${index}`;
         saveButton.classList.add("my-auto", "btn", "btn-primary");
 
         saveButton.addEventListener("click", () => {
-            new_text = document.getElementById(`note_${index}`).value;
+            let new_text = document.getElementById(`note_${index}`).value;
 
             notes[index].text = new_text;
             // Update the localStorage value
@@ -54,9 +55,11 @@ class NoteManager {
 
     generateDeleteButton(index) {
         let deleteButton = document.createElement("button");
+        let notes = JSON.parse(localStorage.getItem("notes"))
         deleteButton.innerText = "Delete";
         deleteButton.id = `delete_${index}`;
         deleteButton.classList.add("my-auto", "btn", "btn-danger");
+
 
         deleteButton.addEventListener("click", () => {
             // Remove the specific div from the DOM
@@ -86,7 +89,7 @@ class NoteManager {
         let section = document.getElementById("view");
         section.innerHTML = '';
         // Get the Notes
-        notes = JSON.parse(localStorage.getItem("notes"))
+        let notes = JSON.parse(localStorage.getItem("notes"))
         
         // Creates a div for each note and then append it to the section.
         notes.forEach((item, index) => {
@@ -109,7 +112,7 @@ class NoteManager {
     }
 
     saveNotes() {
-        notes = JSON.parse(localStorage.getItem("notes"))
+        let notes = JSON.parse(localStorage.getItem("notes"))
         let time = new Date().toLocaleTimeString();
         let updated_span = document.getElementById("time");
         // Save
@@ -128,7 +131,7 @@ class NoteManager {
     
     // Get's the last saved object
     getLastSaved() {
-        notes = JSON.parse(localStorage.getItem("notes"))
+        let notes = JSON.parse(localStorage.getItem("notes"))
         let timeSpan = document.getElementById("time");
         time.textContent = notes[notes.length - 1].time;
     }
@@ -138,15 +141,14 @@ class NoteManager {
     }
 
     populateReaderView() {
-        section = document.getElementById("reader_view");
-        data = JSON.parse(localStorage.getItem("notes"))
-        console.log(data)
+        const section = document.getElementById("reader_view");
+        let notes = JSON.parse(localStorage.getItem("notes"))
     
-        data.forEach((item) => {
-            div = document.createElement("div");
+        notes.forEach((item) => {
+            let div = document.createElement("div");
             div.classList.add("d-flex", "items-center", "py-2","m-auto", "gap-2", "rounded-md", "w-25")
     
-            paragraph = document.createElement("p");
+            let paragraph = document.createElement("p");
             paragraph.textContent = item.text;
             paragraph.classList.add("rounded-md","form-control", "m-1", "text-center", "bg-light");
     
@@ -159,10 +161,3 @@ class NoteManager {
         });
     }
 }
-
-let notes = JSON.parse(localStorage.getItem("notes")) || []
-const Notes = new NoteManager(notes);
-Notes.attachEventListeners();
-Notes.populateSection()
-Notes.getLastSaved();
-Notes.autoSave();
