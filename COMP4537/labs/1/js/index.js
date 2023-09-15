@@ -35,22 +35,22 @@ class NoteManager {
         this.populateSection();
     }
 
-    generateSaveButton(index) {
-        let saveButton = document.createElement("button");
-        saveButton.innerText = "Save";
-        saveButton.id = `save_${index}`;
-        saveButton.classList.add("my-auto", "btn", "btn-primary");
+    // generateSaveButton(index) {
+    //     let saveButton = document.createElement("button");
+    //     saveButton.innerText = "Save";
+    //     saveButton.id = `save_${index}`;
+    //     saveButton.classList.add("my-auto", "btn", "btn-primary");
 
-        saveButton.addEventListener("click", () => {
-            new_text = document.getElementById(`note_${index}`).value;
+    //     saveButton.addEventListener("click", () => {
+    //         new_text = document.getElementById(`note_${index}`).value;
 
-            notes[index].text = new_text;
-            // Update the localStorage value
-            localStorage.setItem("notes", JSON.stringify(notes));
-            console.log(localStorage.getItem("notes"));
-        });
-        return saveButton;
-    }
+    //         notes[index].text = new_text;
+    //         // Update the localStorage value
+    //         localStorage.setItem("notes", JSON.stringify(notes));
+    //         console.log(localStorage.getItem("notes"));
+    //     });
+    //     return saveButton;
+    // }
 
     generateDeleteButton(index) {
         let deleteButton = document.createElement("button");
@@ -94,13 +94,12 @@ class NoteManager {
             div.classList.add("d-flex", "items-center", "py-2","m-auto", "gap-2", "rounded-md")
 
             
-            const saveButton = this.generateSaveButton(index);
+
             const deleteButton = this.generateDeleteButton(index);
             const textarea = this.generateTextArea(item, index);
     
             // Append the textarea, save button, and delete button to the div
             div.appendChild(textarea);
-            div.appendChild(saveButton);
             div.appendChild(deleteButton);
     
             // Append the div to the section
