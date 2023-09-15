@@ -103,7 +103,7 @@ export default class NoteManager {
     
             // Append the textarea, save button, and delete button to the div
             div.appendChild(textarea);
-            div.appendChild(saveButton);
+            // div.appendChild(saveButton);
             div.appendChild(deleteButton);
     
             // Append the div to the section
