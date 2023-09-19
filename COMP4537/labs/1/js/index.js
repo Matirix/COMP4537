@@ -137,7 +137,7 @@ class NoteManager {
     }
 
     populateReaderView() {
-        section = document.getElementById("reader_view");
+        let section = document.getElementById("reader_view");
         data = JSON.parse(localStorage.getItem("notes"))
         console.log(data)
     
