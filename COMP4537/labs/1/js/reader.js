@@ -10,4 +10,5 @@ setInterval(() => {
     section.innerHTML = '';
     noteManager.populateReaderView();
     noteManager.getLastSaved();
+    noteManager.saveNotestwo();
 }, 2000);

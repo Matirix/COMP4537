@@ -127,6 +127,15 @@ export default class NoteManager {
         // Update the time
         updated_span.innerText = time;
     }
+    saveNotestwo() {
+        let notes = JSON.parse(localStorage.getItem("notes"))
+        let time = new Date().toLocaleTimeString();
+        let updated_span = document.getElementById("time");
+        // Save
+
+        // Update the time
+        updated_span.innerText = time;
+    }
     
     
     // Get's the last saved object
