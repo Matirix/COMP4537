@@ -9,7 +9,8 @@ http.createServer((req, res) => {
     const link = url.parse(req.url, true)
     const query = link.query;
     const pathname = link.pathname;
-    if (query.text && pathname == 'COMP4537/labs/3/writeFile/') {
+
+    if (query.text && pathname == '/COMP4537/labs/3/writeFile/') {
         const text = query.text;
         fs.appendFile('file.txt', text, (err) => {
             if (err) {
@@ -20,8 +21,8 @@ http.createServer((req, res) => {
                 res.end('File written successfully to file.txt')
             }
           });
-    } else if (pathname.startsWith('COMP4537/labs/3/writeFile/readFile') ) {
-        let filePath = pathname.split('/')[4];
+    } else if (pathname.startsWith('/COMP4537/labs/3/readFile/') ) {
+        let filePath = pathname.split('/')[5];
         fs.readFile(filePath, (err, data) => {
             if (err) {
                 res.writeHead(200, {'Content-Type': 'text/html'})
@@ -30,7 +31,7 @@ http.createServer((req, res) => {
             res.writeHead(200, {'Content-Type': 'text/html'})
             res.end(data)
         })
-    } else if (query.name && pathname == 'COMP4537/labs/3/getDate'){
+    } else if (query.name && pathname == '/COMP4537/labs/3/getDate/'){
         const name = query.name;
         const message = `Hello ${name || "Nobody"} the current server date/time is ${util.myServerDateTime()}`
 
