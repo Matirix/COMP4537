@@ -1,0 +1,3 @@
+exports.myServerDateTime = () => {
+    return Date()
+}
